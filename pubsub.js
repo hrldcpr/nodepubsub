@@ -14,7 +14,7 @@ http.createServer(function(request, response) {
 
 	request.on('end', function() {
 	    response.end();
-	    getters.splice(0, getters.length); // clear
+	    getters = [];
 	});
     }
 }).listen(8080);
