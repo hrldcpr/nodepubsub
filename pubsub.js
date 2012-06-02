@@ -21,7 +21,7 @@ https.createServer({
 	request.on('end', function() {
 	    response.end();
 	    console.log('\n/SEND');
-	    getters.splice(0, getters.length); // clear
+	    getters = [];
 	});
     }
 }).listen(443);
