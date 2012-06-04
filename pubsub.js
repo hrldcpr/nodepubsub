@@ -42,7 +42,9 @@ https.createServer({
 	}
 
 	// if connection closes prematurely:
-	response.on('close', response.end);
+	response.on('close', function() {
+	    response.end();
+	});
     }
 
     else if (request.method == 'POST') {
@@ -53,6 +55,11 @@ https.createServer({
 		request.pipe(getter);
 	    });
 	}
-	response.end();
+	request.on('end', function() {
+	    response.end();
+	});
+	request.on('close', function() {
+	    response.end();
+	});
     }
 }).listen(443);
